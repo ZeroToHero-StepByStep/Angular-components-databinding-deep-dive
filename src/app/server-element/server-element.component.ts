@@ -1,33 +1,62 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
   templateUrl: './server-element.component.html',
   styleUrls: ['./server-element.component.css'],
-  encapsulation : ViewEncapsulation.Emulated   //none , native
+  encapsulation: ViewEncapsulation.Emulated   //none , native
 })
-export class ServerElementComponent implements OnInit {
-  @Input('srcElement') element: {type: string, name: string, content: string};
+export class ServerElementComponent implements OnInit,
+  OnChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
+  @Input('srcElement') element: { type: string, name: string, content: string };
+  @Input() name: string;
 
-  onAddServer() {
-    // this.serverElements.push({
-    //   type: 'server',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
+  constructor() {
+    console.log('constructor called');
   }
 
-  onAddBlueprint() {
-    // this.serverElements.push({
-    //   type: 'blueprint',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges called');
+    console.log(changes);
   }
-
-  constructor() { }
 
   ngOnInit() {
+    console.log('ngOnInit called');
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck called');
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit called');
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked called');
+  }
+
+  ngAfterViewInit() {
+    console.log ('ngAfterViewInit called') ;
+  }
+
+  ngAfterViewChecked () {
+    console.log ('ngAfterViewChecked called') ;
+  }
+
+  ngOnDestroy() {
+    console.log ('ngOnDestroy called') ;
   }
 
 }
